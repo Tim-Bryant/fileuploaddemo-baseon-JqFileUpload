@@ -2,6 +2,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
 <meta charset="utf-8">
 <title>jQuery File Upload Example</title>
 <link rel="stylesheet" href="js/bootstrap3/css/bootstrap.css">
@@ -33,9 +37,8 @@
     <h2 class="lead">by TimBryant</h2>
     <ul class="nav nav-tabs">
         <li><a href="fileupload.jsp">Basic</a></li>
-        <li class="active"><a href="basic-plus.html">Basic Plus</a></li>
-        <li><a href="index.html">Basic Plus UI</a></li>
-        <li><a href="jquery-ui.html">jQuery UI</a></li>
+        <li class="active"><a href="fileupload_plus.jsp">Basic Plus</a></li>
+        <li><a href="fileupload_index.jsp">Basic Plus UI</a></li>
     </ul>
     <br>
     <blockquote>
@@ -158,6 +161,13 @@ $(function () {
             'width',
             progress + '%'
         );
+        /**
+        *增加百分比的提示 
+         @author TimBryant
+        */
+        $('#progress .progress-bar').html(
+                progress + '%'
+         );
     }).on('fileuploaddone', function (e, data) {
         $.each(data.files, function (index, file) {
             if (file.url) {

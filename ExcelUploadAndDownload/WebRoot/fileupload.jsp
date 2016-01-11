@@ -34,8 +34,7 @@
     <ul class="nav nav-tabs">
         <li class="active"><a href="fileupload.jsp">Basic</a></li>
         <li><a href="fileupload_plus.jsp">Basic Plus</a></li>
-        <li><a href="index.html">Basic Plus UI</a></li>
-        <li><a href="jquery-ui.html">jQuery UI</a></li>
+        <li><a href="fileupload_index.jsp">Basic Plus UI</a></li>
     </ul>
     <br>
     <blockquote>
