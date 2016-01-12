@@ -30,11 +30,11 @@
 </div>
 <div class="container">
     <h1>jQuery File Upload Demo</h1>
-    <h2 class="lead">by TimBryant</h2>
+    <h2 class="lead">base on JavaWeb by TimBryant</h2>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="fileupload.jsp">Basic</a></li>
-        <li><a href="fileupload_plus.jsp">Basic Plus</a></li>
-        <li><a href="fileupload_index.jsp">Basic Plus UI</a></li>
+       <li class="active"><a href="fileupload.jsp">基础上传</a></li>
+       <li><a href="fileupload_plus.jsp">带预览的上传</a></li>
+       <li><a href="fileupload_index.jsp">Jquery模板上传解析</a></li>
     </ul>
     <br>
     <blockquote>

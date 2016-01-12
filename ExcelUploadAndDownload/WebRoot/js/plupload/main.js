@@ -18,7 +18,8 @@ $(function () {
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: 'useCommonsFileUploadServlet.do'
+        url: 'useCommonsFileUploadServlet.do',
+        maxNumberOfFiles:5
     });
 
     // Enable iframe cross-domain access via redirect option:
@@ -67,6 +68,8 @@ $(function () {
         }).always(function () {
             $(this).removeClass('fileupload-processing');
         }).done(function (result) {
+        	//需要按照官方的要求，返回一个files   JSON 数组的集合
+        	//console.info(result);
             $(this).fileupload('option', 'done')
                 .call(this, $.Event('done'), {result: result});
         });

@@ -7,18 +7,19 @@ import java.net.SocketException;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 
 public class FtpFileUpload {
 
-	public static void uploadFile(String fileName, InputStream inputStream) throws SocketException, IOException {
+	public static boolean uploadFile(String fileName, InputStream inputStream) throws SocketException, IOException {
 		FTPClient ftpClient = openFtp();
 		OutputStream outputStream = null;
 		int bytes;
 		byte[] b = new byte[1024];
 		ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
 		ftpClient.enterLocalPassiveMode();
-		
-		outputStream = ftpClient.storeFileStream(new String(fileName.getBytes("GBK"),"ISO8859_1"));
+
+		outputStream = ftpClient.storeFileStream(new String(fileName.getBytes("GBK"), "ISO8859_1"));
 		// log.debug("FTP 链接模式：" + ftpClient.getDataConnectionMode());
 		try {
 			while ((bytes = inputStream.read(b)) != -1) {
@@ -29,12 +30,44 @@ public class FtpFileUpload {
 			inputStream.close();
 			boolean flag;
 			flag = ftpClient.completePendingCommand();
-			System.out.println(flag);
+			return flag;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
+	/**
+	 * FTP文件的删除
+	 * 
+	 * @param fileName
+	 * @param inputStream
+	 * @return
+	 * @throws SocketException
+	 * @throws IOException
+	 */
+	public static boolean deleteFile(String pathName) throws SocketException, IOException {
+		FTPClient ftpClient = openFtp();
+		if (!StringUtils.isBlank(pathName)) {
+			FTPFile[] listFiles = ftpClient.listFiles(new String(pathName.getBytes("GBK"), "ISO8859_1"));
+			boolean deleteFile = false;
+			if (listFiles.length <= 0) {
+				System.out.println("文件不存在！");
+			} else {
+				deleteFile = ftpClient.deleteFile(new String(pathName.getBytes("GBK"), "ISO8859_1"));
+			}
+			return deleteFile;
+		}
+		return false;
+	}
+
+	/**
+	 * FTP登录和目录切换
+	 * 
+	 * @return
+	 * @throws SocketException
+	 * @throws IOException
+	 */
 	private static FTPClient openFtp() throws SocketException, IOException {
 		String ftpServerIp = "127.0.0.1";
 		int ftpPort = 21;

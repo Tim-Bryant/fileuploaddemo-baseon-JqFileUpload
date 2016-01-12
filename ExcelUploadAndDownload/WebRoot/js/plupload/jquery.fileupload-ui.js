@@ -287,7 +287,7 @@
                             .children().first().css(
                                 'width',
                                 progress + '%'
-                            );
+                            ).html(""+progress +"%");
                     });
                 }
             },

@@ -42,17 +42,17 @@
 </div>
 <div class="container">
     <h1>jQuery File Upload Demo</h1>
-    <h2 class="lead">by TimBryant</h2>
+    <h2 class="lead">base on JavaWeb by TimBryant</h2>
     <ul class="nav nav-tabs">
-        <li><a href="fileupload.jsp">Basic</a></li>
-        <li><a href="fileupload_plus.jsp">Basic Plus</a></li>
-        <li class="active"><a href="fileupload_index.jsp">Basic Plus UI</a></li>
+        <li><a href="fileupload.jsp">基础上传</a></li>
+        <li><a href="fileupload_plus.jsp">带预览的上传</a></li>
+        <li class="active"><a href="fileupload_index.jsp">Jquery模板上传解析</a></li>
     </ul>
     <br>
     <blockquote>
         <p>File Upload widget with multiple file selection, drag&amp;drop support and progress bar for jQuery.<br>
-        Supports cross-domain, chunked and resumable file uploads.<br>
-        Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
+                           本实例基于Servlet开发  对原生的进度条加了百分比显示，对上传后的文件信息以规范的（符合Jquery模板解析）的JSON格式返回到页面上.<br>
+                           同时还增加了上传数量的限制，本案例中暂时限制为5个</p>
     </blockquote>
     <br>
      <!-- The file upload form used as target for the file upload widget -->
@@ -160,8 +160,8 @@
                     <span>{%=file.name%}</span>
                 {% } %}
             </p>
-            {% if (file.error) { %}
-                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% if (file.success) { %}
+                <div><span class="label label-success">Success</span> {%=file.success%}</div>
             {% } %}
         </td>
         <td>
@@ -212,6 +212,10 @@
 <script src="js/plupload/jquery.fileupload-ui.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="js/plupload/main.js"></script>
+
+<!-- My define plugin -->
+<script src="js/myplugin/demo.js"></script>
+
 
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
 <!--[if (gte IE 8)&(lt IE 10)]>
